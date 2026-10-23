@@ -1,6 +1,3 @@
-/**
- * @author ECE 3058 TAs
- */
 
 #ifndef __CACHESIM_H
 #define __CACHESIM_H
