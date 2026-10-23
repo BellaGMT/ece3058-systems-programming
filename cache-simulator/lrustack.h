@@ -1,7 +1,3 @@
-/**
- * @author ECE 3058 TAs
- */
-
 #ifndef __LRUSTACK_H
 #define __LRUSTACK_H
 
