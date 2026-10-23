@@ -1,11 +1,19 @@
-# ECE 3058 — Systems Programming in C
+# ECE 3058: C Systems Programming
 
-A portfolio index for C-based computer architecture and operating systems coursework.
+**Milca Takou** · Georgia Institute of Technology
 
-| Project | Concepts |
-| --- | --- |
-| Cache Simulator | Cache organization, memory hierarchy, LRU |
-| Virtual Memory Simulator | Paging, address translation, page replacement |
-| CPU Scheduler | POSIX threads, scheduling, synchronization |
+Course project collection covering C programming, computer architecture, and operating systems.
 
-**Source code status:** Pending authorship and course-publication-policy review. Imported coursework includes third-party attribution, and the source has not been fully validated. Assignment scaffolding and others' work must not be represented as original work. Source files will be added only after publication permissions and attribution are confirmed.
+## Projects
+
+- **Cache Simulator:** set-associative caches, LRU, dirty blocks, address decoding.
+- **Virtual Memory Simulator:** frame tables, address translation, page faults, replacement, swap.
+- **Multithreaded CPU Scheduler:** process queues, scheduling algorithms, pthreads, mutexes, and condition variables.
+
+## Source provenance
+
+The student implementations were developed by Milca Takou. Course-provided starter code and simulator scaffolding may retain their original author credits. The complete source files are pending a check of applicable course publication permissions and tests.
+
+## Status
+
+Project summaries are published. The full source archive has not yet been published to this repository.
