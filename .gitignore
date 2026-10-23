@@ -1,0 +1,12 @@
+*.o
+*.a
+*.so
+*.out
+*.log
+.DS_Store
+__MACOSX/
+*.tar.gz
+*.zip
+vm-sim
+os-sim
+cachesim
