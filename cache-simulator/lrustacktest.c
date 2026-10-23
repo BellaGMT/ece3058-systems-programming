@@ -1,7 +1,3 @@
-/**
- * @author ECE 3058 TAs
- */
-
 #include <stdio.h>
 #include "lrustack.h"
 
