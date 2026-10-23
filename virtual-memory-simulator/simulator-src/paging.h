@@ -25,21 +25,7 @@ typedef struct ptable_entry {
                                    swap_read() and swap_write() */
 } pte_t;
 
-/*
- * An entry in the frame table.
- *
- * When we need a new physical frame, we must have some way to know which frames
- * are free. The frame table does just this. It is a global table shared among
- * all processes, and contains one entry for each physical frame on the disk.
- *
- * Frames come in one of two forms: Either they hold memory system data (such as
- * a page directory or page table), or they hold data for a page mapped via a
- * page table.
- *
- * Whenever you allocate or re-purpose frames, you *MUST* keep the frame table
- * up to date. You'll read from the frame table in page_replacement.c to select
- * which frames to hand out when processes require more pages.
- */
+/* Virtual memory mapping structures and APIs. */
 typedef struct ft_entry {
     /* -- Used for page table pages -- */
     uint8_t protected;          /* 1 if the frame holds a page table and is
@@ -53,16 +39,10 @@ typedef struct ft_entry {
     vpn_t vpn;                  /* The VPN mapped by the process using this frame. */
 } fte_t;
 
-/* A convenient global reference to the frame table, which you will
-   set up in paging.c */
+/* Virtual memory mapping structures and APIs. */
 extern fte_t *frame_table;      /* The frame table */
 
-/*
- * Paging functions.
- *
- * These will be completed by you in the corresponding files, paging.c,
- * page_fault.c, and page_replacement.c.
- */
+/* Virtual memory mapping structures and APIs. */
 void system_init(void);
 
 void proc_init(pcb_t *proc);

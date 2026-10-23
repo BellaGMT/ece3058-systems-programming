@@ -1,10 +1,4 @@
-/*
- * student.h
- * Multithreaded OS Simulation for CS 2200 and ECE 3058
- *
- * YOU WILL NOT NEED TO MODIFY THIS FILE
- *
- */
+/* Scheduling callback declarations. */
 
 #ifndef __STUDENT_H__
 #define __STUDENT_H__

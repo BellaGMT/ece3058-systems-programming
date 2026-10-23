@@ -1,11 +1,4 @@
-/*
- * os-sim.h
- * Multithreaded OS Simulation for CS 2200 and ECE 3058
- *
- * The simulator library.
- *
- * YOU WILL NOT NEED TO MODIFY THIS FILE
- */
+/* Simulator types and interfaces. */
 
 #ifndef __OS_SIM_H__
 #define __OS_SIM_H__
@@ -24,26 +17,7 @@ typedef enum {
 } process_state_t;
 
 
-/*
- * The Process Control Block
- *
- *   pid  : The Process ID, a unique number identifying the process. (read-only)
- *
- *   name : A string containing the name of the process. (read-only)
- *
- *   time_remaining : An integer to be used by the shortest remaining
- *         time first algorithm. 
- *
- *   state : The current state of the process.  This should be updated by the
- *        student's code in each of the handlers.  See the task_state_t
- *        struct above for possible values.
- *
- *   pc : The "program counter" of the process.  This value is actually used
- *        by the simulator to simulate the process.  Do not touch.
- *
- *   next : An unused pointer to another PCB.  You may use this pointer to
- *        build a linked-list of PCBs.
- */
+/* Simulator types and interfaces. */
 typedef enum { OP_CPU = 0, OP_IO, OP_TERMINATE } op_type;
 
 typedef struct {

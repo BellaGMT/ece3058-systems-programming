@@ -1,9 +1,4 @@
-/*
- * student.c
- * Multithreaded OS Simulation for CS 2200 and ECE 3058
- *
- * This file contains the CPU scheduler for the simulation.
- */
+/* Process scheduling and synchronization routines. */
 
 #include <assert.h>
 #include <pthread.h>
@@ -20,15 +15,7 @@ extern void terminate(unsigned int cpu_id);
 extern void wake_up(pcb_t *process);
 
 
-/*
- * current[] is an array of pointers to the currently running processes.
- * There is one array element corresponding to each CPU in the simulation.
- *
- * current[] should be updated by schedule() each time a process is scheduled
- * on a CPU.  Since the current[] array is accessed by multiple threads, you
- * will need to use a mutex to protect it.  current_mutex has been provided
- * for your use.
- */
+/* Process scheduling and synchronization routines. */
 static pcb_t **current;
 static pthread_mutex_t current_mutex;
 static pthread_mutex_t q_mutex;
@@ -89,22 +76,7 @@ static pcb_t* dequeue()
     return processes;
 }
 
-/*
- * schedule() is your CPU scheduler.  It should perform the following tasks:
- *
- *   1. Select and remove a runnable process from your ready queue which 
- *	you will have to implement with a linked list or something of the sort.
- *
- *   2. Set the process state to RUNNING
- *
- *   3. Call context_switch(), to tell the simulator which process to execute
- *      next on the CPU.  If no process is runnable, call context_switch()
- *      with a pointer to NULL to select the idle process.
- *	The current array (see above) is how you access the currently running process indexed by the cpu id. 
- *	See above for full description.
- *	context_switch() is prototyped in os-sim.h. Look there for more information 
- *	about it and its parameters.
- */
+/* Process scheduling and synchronization routines. */
 static void schedule(unsigned int cpu_id)
 {
     /* FIX ME */
@@ -123,25 +95,11 @@ static void schedule(unsigned int cpu_id)
 }
 
 
-/*
- * idle() is your idle process.  It is called by the simulator when the idle
- * process is scheduled.
- *
- * This function should block until a process is added to your ready queue.
- * It should then call schedule() to select the process to run on the CPU.
- */
+/* Process scheduling and synchronization routines. */
 extern void idle(unsigned int cpu_id)
 {
     /* FIX ME */
-    /*
-     * REMOVE THE LINE BELOW AFTER IMPLEMENTING IDLE()
-     *
-     * idle() must block when the ready queue is empty, or else the CPU threads
-     * will spin in a loop.  Until a ready queue is implemented, we'll put the
-     * thread to sleep to keep it from consuming 100% of the CPU time.  Once
-     * you implement a proper idle() function using a condition variable,
-     * remove the call to mt_safe_usleep() below.
-     */
+    /* Process scheduling and synchronization routines. */
     //mt_safe_usleep(1000000);
 
     pthread_mutex_lock(&current_mutex);
@@ -213,22 +171,7 @@ extern void terminate(unsigned int cpu_id)
 }
 
 
-/*
- * wake_up() is the handler called by the simulator when a process's I/O
- * request completes.  It should perform the following tasks:
- *
- *   1. Mark the process as READY, and insert it into the ready queue.
- *
- *   2. If the scheduling algorithm is LRTF, wake_up() may need
- *      to preempt the CPU with lower remaining time left to allow it to
- *      execute the process which just woke up with higher reimaing time.
- * 	However, if any CPU is currently running idle,
-* 	or all of the CPUs are running processes
- *      with a higher remaining time left than the one which just woke up, wake_up()
- *      should not preempt any CPUs.
- *	To preempt a process, use force_preempt(). Look in os-sim.h for 
- * 	its prototype and the parameters it takes in.
- */
+/* Process scheduling and synchronization routines. */
 extern void wake_up(pcb_t *process)
 {
     /* FIX ME */
@@ -242,10 +185,7 @@ extern void wake_up(pcb_t *process)
 }
 
 
-/*
- * main() simply parses command line arguments, then calls start_simulator().
- * You will need to modify it to support the -l and -r command-line parameters.
- */
+/* Process scheduling and synchronization routines. */
 int main(int argc, char *argv[])
 {
     unsigned int cpu_count;

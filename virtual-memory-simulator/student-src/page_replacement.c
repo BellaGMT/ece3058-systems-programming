@@ -8,24 +8,11 @@
 pfn_t select_victim_frame(void);
 
 
-/*  --------------------------------- PROBLEM 7 --------------------------------------
-    Make a free frame for the system to use.
-
-    You will first call the page replacement algorithm to identify an
-    "available" frame in the system.
-
-    In some cases, the replacement algorithm will return a frame that
-    is in use by another page mapping. In these cases, you must "evict"
-    the frame by using the frame table to find the original mapping and
-    setting it to invalid. If the frame is dirty, write its data to swap!
- * ----------------------------------------------------------------------------------
- */
+/* Identify available frames and evict mapped pages as needed. */
 pfn_t free_frame(void) {
     pfn_t victim_pfn;
 
-    /* Call your function to find a frame to use, either one that is
-       unused or has been selected as a "victim" to take from another
-       mapping. */
+    /* Identify available frames and evict mapped pages as needed. */
     victim_pfn = select_victim_frame();
 
     /*
@@ -85,8 +72,7 @@ pfn_t select_victim_frame() {
         }
     } 
 
-    /* If every frame is protected, give up. This should never happen
-       on the traces we provide you. */
+    /* Identify available frames and evict mapped pages as needed. */
     panic("System ran out of memory\n");
     exit(1);
 }

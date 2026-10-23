@@ -22,9 +22,7 @@ void assert_equal(int test_num, int expected, int actual) {
     }
 }
 
-/**
- * Function to run tests (written by TAs) to test your LRU stack implementation
- */
+/* LRU stack test routines. */
 void run_ta_tests() {
     // Initialize LRU stack
     int size = 8;
@@ -52,16 +50,12 @@ void run_ta_tests() {
     assert_equal(test_num++, 4, lru_stack_get_lru(stack));
 }
 
-/**
- * Function to run tests (written by YOU) to test your LRU stack implementation
- */
+/* LRU stack test routines. */
 void run_student_tests() {
     ////////////////////////////////////////////////////////////////////
-    //  Optional: Add any additional tests for your LRU stack implementation. 
     ////////////////////////////////////////////////////////////////////
 
     ////////////////////////////////////////////////////////////////////
-    //  End of your code   
     ////////////////////////////////////////////////////////////////////
 }
 

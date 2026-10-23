@@ -16,22 +16,18 @@
 typedef unsigned long long addr_t;		// Data type to hold addresses
 typedef unsigned long long counter_t;	// Data type to hold cache statistic variables
 
-/**
- * Struct for a cache block. Feel free to change any of this if you want. 
- */
+/* Cache simulator structures and interface. */
 typedef struct cache_block_t {
 	int tag;
 	int valid;
 	int dirty;
 } cache_block_t;
 
-/**
- * Struct for a cache set. Feel free to change any of this if you want. 
- */
+/* Cache simulator structures and interface. */
 typedef struct cache_set_t {
 	int size;				// Number of blocks in this cache set
 	lru_stack_t* stack;		// LRU Stack 
-	cache_block_t* blocks;	// Array of cache block structs. You will need to
+	cache_block_t* blocks;
 							// 	dynamically allocate based on number of blocks
 							//	per set. 
 } cache_set_t;

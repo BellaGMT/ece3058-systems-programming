@@ -80,7 +80,6 @@ int main(int argc, char **argv)
     }
     if (!replacement) {
 	 replacement = RANDOM;
-        // fprintf(stderr, "ERROR: You must select a replacement algorithm using -r.\n");
         // print_help_and_exit();
     }
 

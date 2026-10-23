@@ -16,32 +16,10 @@ static inline int swap_exists(pte_t *entry) {
     return entry->swap != 0;
 }
 
-/**
- * Reads bytes from a page table entry's swap entry into physical
- * memory. Copies PAGE_SIZE bytes from swap to memory starting at dst.
- *
- * @param entry a pointer to the page table entry
- * @param dst the destination to which bytes read from swap should be
- * copied. This should be a pointer to the start of the relevant frame
- * in your mem[] array.
- */
+/* Implementation notes for this component. */
 void swap_read(pte_t *entry, void *dst);
 
-/**
- * Writes bytes from physical memory into a swap space corresponding
- * to the supplied page table entry. Copies PAGE_SIZE bytes from
- * memory starting at src into swap.
- *
- * If no swap entry is currently allocated for the page, a new one
- * will be allocated. This entry must later be freed with swap_free to
- * avoid a memory leak. The page table entry's swap field is updated
- * automatically.
- *
- * @param entry a pointer to the page table entry
- * @param src the source address from which bytes should be copied
- * into swap. This should be a pointer to the start of the relevant
- * frame in your mem[] array.
- */
+/* Implementation notes for this component. */
 void swap_write(pte_t *entry, void *src);
 
 /**

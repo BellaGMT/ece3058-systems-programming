@@ -44,7 +44,7 @@ typedef struct process {
  * Global Data Structures
  */
 
-/* These will be provided by the simulator, but managed by the student. */
+/* Simulator interfaces and shared state. */
 
 extern uint8_t *mem;            /* physical memory itself */
 
@@ -63,14 +63,8 @@ extern uint8_t replacement;
 #define RANDOM 1
 #define CLOCKSWEEP 2
 
-/*
- * Stats.
- *
- * Throughout the execution of your program, you should update these
- * statistics. The simulator will print them at the end of the simulation.
- */
+/* Simulator interfaces and shared state. */
 
-/* The following might be helpful in computing your average access
-   time (AAT) */
+/* Simulator interfaces and shared state. */
 #define MEMORY_ACCESS_TIME      100 /* 100 ns */
 #define DISK_ACCESS_TIME   10000000 /* 10 million ns = 10 ms */

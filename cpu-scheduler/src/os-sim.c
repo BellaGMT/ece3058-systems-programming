@@ -1,11 +1,4 @@
-/*
- * os-sim.c
- * Multithreaded OS Simulation for CS 2200 and ECE 3058
- *
- * The simulator internals.
- *
- * DO NOT MODIFY THIS FILE
- */
+/* Multithreaded operating system simulation. */
 
 #include <assert.h>
 #include <pthread.h>
@@ -69,23 +62,7 @@ static void simulate_creat(void);
 static void* simulator_cpu_thread_func(void *data);
 
 
-/*
- * IRWL - An "Inverted" Readers-Writers Lock
- *
- * Unlike a traditional readers-writers lock, this lock allows infinitely
- * many writers or one reader.
- *
- * Its purpose is to protect the state variable of the PCB structures, which
- * is accessed both by the student's code and by print_gantt_line().  We
- * could use a simple mutex, and lock it while calling any student's code,
- * but then the student's code wouldn't get tested for thread-safeness.
- * So we will intentionally let multiple pieces of the student's code run
- * simultaneously.
- *
- * For the student_lock, the IRWL_WRITER should always be locked while
- * student code is executing on a CPU thread.  The IRWL_READER should always be
- * locked whenever non-constant data in a PCB is used by the library.
- */
+/* Multithreaded operating system simulation. */
 typedef struct {
     pthread_mutex_t mutex;
     pthread_cond_t no_writers;
@@ -197,30 +174,7 @@ static void simulator_supervisor_thread(void)
 }
 
 
-/*
- * This is the loop for the CPU threads.  The general idea:
- *
- *   1) Each CPU thread has a state variable.  While the library is using the
- *      CPU thread to simulate a process, this variable is set to CPU_RUNNING.
- *
- *   2) To "simulate" a process, we simply block on a condition variable.
- *      Each CPU thread has a dedicated condition variable.
- *
- *   3) For simplicity, the supervisor thread actually does all of the work.
- *      This makes synchronization in the simulator much easier, since all
- *      the real work is done by a single thread.  So, when the supervisor
- *      wants to dispatch an event to a CPU thread, it needs to unblock the
- *      CPU thread.  It does this by setting the CPU thread's state variable
- *      to inform the CPU thread of the event, then it signals the condition
- *      variable.
- *
- *   4) Once the CPU thread unblocks, it calls the students event handler,
- *      then goes back to step 1.
- *
- * There is one special case: idle.  Idle is simulated by the student's code,
- * not the library's.  So we simply set the state variable to CPU_IDLE, and
- * call the student's code.
- */
+/* Multithreaded operating system simulation. */
 static void simulator_cpu_thread(unsigned int cpu_id)
 {
     simulator_cpu_state_t state;
@@ -249,7 +203,7 @@ static void simulator_cpu_thread(unsigned int cpu_id)
         state = simulator_cpu_data[cpu_id].state;
         pthread_mutex_unlock(&simulator_mutex);
 
-        /* Call student's code */
+        /* Multithreaded operating system simulation. */
         switch (state)
         {
         case CPU_IDLE:
@@ -379,10 +333,7 @@ static void print_final_stats(void)
 
 
 
-/*
- * context_switch() and force_preempt() are the two functions available to
- * student's code.
- */
+/* Multithreaded operating system simulation. */
 extern void context_switch(unsigned int cpu_id, pcb_t *pcb,
                            int preemption_time)
 {
@@ -407,11 +358,7 @@ extern void force_preempt(unsigned int cpu_id)
     IRWL_WRITER_UNLOCK(student_lock);
     pthread_mutex_lock(&simulator_mutex);
 
-    /*
-     * It is possible that the student's code calls force_preempt() at the
-     * same time the process was already going to yield or terminate.  We
-     * check for that case by only preempting if the CPU is set to CPU_RUNNING.
-     */
+    /* Multithreaded operating system simulation. */
     if (simulator_cpu_data[cpu_id].state == CPU_RUNNING)
     {
         simulator_cpu_data[cpu_id].state = CPU_PREEMPT;
@@ -428,20 +375,7 @@ extern void force_preempt(unsigned int cpu_id)
 
 
 
-/*
- * The functions below are used by the supervisor thread to simulate the OS.
- *
- * simulate_cpus() / simulate_process() simulate the processes on each CPU
- *   and signal the appropriate CPU thread if an event occurs.
- *
- * submit_io_request() inserts a PCB into tail of the I/O queue.
- *
- * simulate_io() simulates the I/O request at the head of the I/O queue and
- *   calls wake_up() upon completion.
- *
- * simulate_creat() simulates initial process creation by calling the
- *   student's wake_up().
- */
+/* Multithreaded operating system simulation. */
 
 static void simulate_cpus(void)
 {
@@ -575,18 +509,14 @@ static void simulate_io(void)
         completed->pcb->pc = ((op_t*)completed->pcb->pc) + 1;
         completed->pcb->time_remaining = completed->pcb->pc->time + 1;
 
-        /*
-         * Remove the I/O request from the queue before calling the student's
-         * code.  We must do this, because once we release the simulator_mutex,
-         * the I/O queue may have changed.
-         */
+        /* Multithreaded operating system simulation. */
         pcb = completed->pcb;
         io_queue_head = completed->next;
         if (io_queue_head == NULL)
             io_queue_tail = NULL;
         free(completed);
 
-        /* Call the student's wake_up() handler */
+        /* Multithreaded operating system simulation. */
         pthread_mutex_unlock(&simulator_mutex);
         IRWL_WRITER_LOCK(student_lock);
         wake_up(pcb);
@@ -601,7 +531,7 @@ static void simulate_creat(void)
 
     if ((simulator_time % 10) == 0 && processes_created < PROCESS_COUNT)
     {
-        /* Call student's wake_up() handler */
+        /* Multithreaded operating system simulation. */
         pthread_mutex_unlock(&simulator_mutex);
         IRWL_WRITER_LOCK(student_lock);
         wake_up(&processes[processes_created]);
