@@ -1,19 +1,25 @@
-# ECE 3058: C Systems Programming
+# ECE 3058 — Systems Programming in C
 
-**Milca Takou** · Georgia Institute of Technology
+**Milca Takou** | Georgia Institute of Technology
 
-Course project collection covering C programming, computer architecture, and operating systems.
+A collection of systems programming projects exploring computer architecture, memory management, and operating system design in C.
 
 ## Projects
 
-- **Cache Simulator:** set-associative caches, LRU, dirty blocks, address decoding.
-- **Virtual Memory Simulator:** frame tables, address translation, page faults, replacement, swap.
-- **Multithreaded CPU Scheduler:** process queues, scheduling algorithms, pthreads, mutexes, and condition variables.
+### Cache Simulator
+Implements set-associative cache behavior, address decoding, least-recently-used (LRU) replacement, and dirty-block tracking.
 
-## Source provenance
+**Concepts:** C, pointers, bitwise operations, memory hierarchy, cache replacement policies.
 
-The student implementations were developed by Milca Takou. Course-provided starter code and simulator scaffolding may retain their original author credits. The complete source files are pending a check of applicable course publication permissions and tests.
+### Virtual Memory Simulator
+Explores virtual-to-physical address translation, page faults, frame allocation, page replacement, and swap operations.
 
-## Status
+**Concepts:** C, page tables, memory allocation, operating systems, virtual memory.
 
-Project summaries are published. The full source archive has not yet been published to this repository.
+### Multithreaded CPU Scheduler
+Explores multicore process scheduling and synchronization using POSIX threads, mutexes, and condition variables.
+
+**Concepts:** C, pthreads, concurrency, linked lists, CPU scheduling.
+
+## Skills
+C · Operating Systems · Computer Architecture · Memory Management · Multithreading · Data Structures
